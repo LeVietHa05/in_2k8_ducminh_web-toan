@@ -19,7 +19,7 @@ export default function Nav() {
                 {navItems.map(item => {
                     return (
                         <Link key={item.name} href={item.href} 
-                        className={`py-4 px-6  rounded-full min-w-45 text-center ${pathName === item.href? "text-[#FEF5CE] bg-transparent border-2" :"text-[#395FAF] bg-[#FEF5CE] border-0"}`}>
+                        className={`py-4 px-6  rounded-full min-w-45 text-center hover:scale-105 ${pathName === item.href? "text-[#FEF5CE] bg-transparent border-2" :"text-[#395FAF] bg-[#FEF5CE] border-0"}`}>
                             <Title text={item.name} className="text-lg"></Title>
                         </Link>
                     )

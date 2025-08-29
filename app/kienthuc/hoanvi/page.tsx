@@ -1,9 +1,10 @@
 import { Cubato, Helves } from "@/app/components/fonts"
 import Image from "next/image"
 import Title from "@/app/components/title"
+import Link from "next/link"
 
 export default function Hamso() {
-    const content = `
+  const content = `
 <p><b>I. Hoán vị</b></p>
 <ul>
   <li><b>1. Định nghĩa</b></li>
@@ -90,25 +91,27 @@ export default function Hamso() {
 
 `
 
-    return (
-        <div className="py-10">
-            <div className={`${Cubato.className} text-[#7EBF57] text-4xl my-6`}>Mô Tả</div>
-            <div className={`text-[#395FAF] text-xl ${Helves.className}`}>
-                - Hoán vị, tổ hợp và chỉnh hợp là một chủ đề ở cấp THPT, có tính ứng dụng cao trong các bài toán đếm
-                <br></br>
-                - Hơn nữa, dạng toán này thường được ứng dụng trong chương trình thi THPTQG</div>
-            <div className={`${Cubato.className} text-[#7EBF57] text-4xl my-6`}>Nội DUng</div>
-            <div className={`text-[#395FAF] text-xl ${Helves.className} text-bold`}>
-                {content && <div className="" dangerouslySetInnerHTML={{ __html: content }}></div>}
-            </div>
+  return (
+    <div className="py-10">
+      <div className={`${Cubato.className} text-[#7EBF57] text-4xl my-6`}>Mô Tả</div>
+      <div className={`text-[#395FAF] text-xl ${Helves.className}`}>
+        - Hoán vị, tổ hợp và chỉnh hợp là một chủ đề ở cấp THPT, có tính ứng dụng cao trong các bài toán đếm
+        <br></br>
+        - Hơn nữa, dạng toán này thường được ứng dụng trong chương trình thi THPTQG</div>
+      <div className={`${Cubato.className} text-[#7EBF57] text-4xl my-6`}>Nội DUng</div>
+      <div className={`text-[#395FAF] text-xl ${Helves.className} text-bold`}>
+        {content && <div className="" dangerouslySetInnerHTML={{ __html: content }}></div>}
+      </div>
 
-            <div className="flex justify-between mt-10 flex-wrap justify-center gap-5 mb-32">
-                {/* <Image src={'/batdangthuc.png'} alt="do thi cua batdangthuc" width={724} height={409}></Image> */}
-            </div>
+      <div className="flex justify-between mt-10 flex-wrap justify-center gap-5 mb-32">
+        {/* <Image src={'/batdangthuc.png'} alt="do thi cua batdangthuc" width={724} height={409}></Image> */}
+      </div>
 
-            <div className="absolute bottom-0 left-0 right-0 h-32 flex justify-center items-center bg-[#7EBF57] ">
-                <Title text="Luyện tập" className="text-4xl min-w-100 rounded-full bg-[#FEF5CE] py-4 text-center"></Title>
-            </div>
-        </div>
-    )
+      <div className="absolute bottom-0 left-0 right-0 h-32 flex justify-center items-center bg-[#7EBF57] ">
+        <Link href={'/luyentap'}>
+          <Title text="Luyện tập" className="text-4xl min-w-100 rounded-full bg-[#FEF5CE] py-4 text-center hover:scale-105 cursor-pointer"></Title>
+        </Link>
+      </div>
+    </div>
+  )
 }

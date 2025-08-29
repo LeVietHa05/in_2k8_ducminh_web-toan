@@ -1,6 +1,7 @@
 import { Cubato, Helves } from "@/app/components/fonts"
 import Image from "next/image"
 import Title from "@/app/components/title"
+import Link from "next/link"
 
 export default function Hamso() {
     const content = `
@@ -99,8 +100,10 @@ export default function Hamso() {
                 <Image src={'/batdangthuc.png'} alt="do thi cua batdangthuc" width={724} height={409}></Image>
             </div>
 
-            <div className="absolute bottom-0 left-0 right-0 h-32 flex justify-center items-center bg-[#7EBF57] ">
-                <Title text="Luyện tập" className="text-4xl min-w-100 rounded-full bg-[#FEF5CE] py-4 text-center"></Title>
+            <div className="absolute bottom-0 left-0 right-0 h-32 flex justify-center items-center bg-[#7EBF57]">
+                <Link href={'/luyentap'}>
+                    <Title text="Luyện tập" className="text-4xl min-w-100 rounded-full bg-[#FEF5CE] py-4 text-center hover:scale-105 cursor-pointer"></Title>
+                </Link>
             </div>
         </div>
     )

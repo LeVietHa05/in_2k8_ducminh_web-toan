@@ -255,11 +255,11 @@ const bocauhoi = [
 
 export default function LuyentapPage() {
     const [isDoingTest, setIsDoingTest] = useState(false);
-    const [cauhoiType, setCauhoiType] = useState(0);
     const [curentCauhoi, setCurentCauhoi] = useState(0);
     const [isShowGiaithich, setIsShowGiaithich] = useState(false)
 
     const cauhoi = bocauhoi[curentCauhoi];
+    // console.log(curentCauhoi)
     const answers = useMemo(() => {
         const all = [cauhoi.dapandung, ...cauhoi.dapansai];
         return all.map((val) => ({ val, sort: Math.random() }))
@@ -269,7 +269,6 @@ export default function LuyentapPage() {
 
     useEffect(() => {
         setIsDoingTest(false)
-        setCauhoiType(0);
         setCurentCauhoi(0);
     }, [])
 
@@ -278,8 +277,9 @@ export default function LuyentapPage() {
     }, [curentCauhoi])
 
     const handleClickSelectType = function (type: number) {
-        console.log(`selected ${type}`)
-        setCauhoiType(type)
+        // console.log(`selected ${type}`)
+        setCurentCauhoi(bocauhoi.findIndex(ch => ch.type === type))
+        // console.log(curentCauhoi)
         setIsDoingTest(true)
     }
 
@@ -292,19 +292,25 @@ export default function LuyentapPage() {
             alert("Sai rồi.")
         }
     }
+    if (!cauhoi) {
+        return (
+            <div>khong co cau hoi</div>
+        )
+    }
+
 
     return (
         <div className="py-10 text-[#395FAF]">
             {!isDoingTest && (
                 <div className="flex flex-wrap justify-center items-center gap-10 ">
                     <div className="  flex justify-center items-center " onClick={() => handleClickSelectType(1)}>
-                        <Title text="Luyện tập Hàm SỐ" className="text-4xl min-w-100 rounded-full bg-[#FEF5CE] py-4 text-center border-white shadow-lg grow"></Title>
+                        <Title text="Luyện tập Hàm SỐ" className="text-4xl min-w-100 rounded-full bg-[#FEF5CE] py-4 text-center border-white shadow-lg grow hover:scale-105 cursor-pointer"></Title>
                     </div>
                     <div className="  flex justify-center items-center grow" onClick={() => handleClickSelectType(2)}>
-                        <Title text="Luyện Tập Bất đẳng thức" className="text-4xl min-w-100 rounded-full bg-[#FEF5CE] py-4 text-center border-white shadow-lg grow"></Title>
+                        <Title text="Luyện Tập Bất đẳng thức" className="text-4xl min-w-100 rounded-full bg-[#FEF5CE] py-4 text-center border-white shadow-lg grow hover:scale-105 cursor-pointer"></Title>
                     </div>
                     <div className="  flex justify-center items-center grow" onClick={() => handleClickSelectType(3)}>
-                        <Title text="Luyện Tập Hoán vị, tổ hợp, chỉnh hợp" className="text-4xl min-w-100 rounded-full bg-[#FEF5CE] py-4 text-center border-white shadow-lg grow"></Title>
+                        <Title text="Luyện Tập Hoán vị, tổ hợp, chỉnh hợp" className="text-4xl min-w-100 rounded-full bg-[#FEF5CE] py-4 text-center border-white shadow-lg grow hover:scale-105 cursor-pointer"></Title>
                     </div>
                 </div>
             )}
@@ -354,14 +360,22 @@ export default function LuyentapPage() {
                         <div
                             className="rounded-full bg-[#FEF5CE] p-2"
                             onClick={() => {
-                                setCurentCauhoi(curentCauhoi > 0 ? curentCauhoi - 1 : 0)
+                                if (curentCauhoi == 0) {
+                                    setIsDoingTest(false)
+                                } else {
+                                    setCurentCauhoi(curentCauhoi - 1)
+                                }
                             }}
                         >
                             <Image src='/left.svg' width={128} height={32} alt=""></Image>
                         </div>
                         <div className="rounded-full bg-[#FEF5CE] p-2"
                             onClick={() => {
-                                setCurentCauhoi(curentCauhoi < bocauhoi.length - 1 ? curentCauhoi + 1 : curentCauhoi)
+                                setCurentCauhoi(curentCauhoi < bocauhoi.length - 1 ? curentCauhoi + 1 : curentCauhoi) 
+                                if (curentCauhoi == bocauhoi.length -1 ) {
+                                    setIsDoingTest(false)
+
+                                }
                             }}
                         >
                             <Image src='/right.svg' width={128} height={32} alt=""></Image>
